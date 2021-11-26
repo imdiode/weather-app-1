@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Applet</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <style>
+        .chartCanvas{
+            height: 400px;
+            width: 20%;
+            margin-left: 33%;
+            margin-top: 10vh;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="linechart" class="chartCanvas"></canvas>
+</body>
+<script defer>
+    const mydata = fetch('data');
+    var labels= [];
+    var datar = [];
+
+    for(var i in mydata){
+        labels.push(i);
+        datar.push(mydata[i]);
+    }
+
+    console.log(datar);
+
+    const cdata = {
+        labels: labels,
+        datasets: [{
+            label: 'Temperature difference',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: datar,
+        }]
+    };
+    const config = {
+        type: 'line',
+        data: cdata,
+        options: {}
+    };
+    const myChart = new Chart(document.getElementById('linechart'), config);
+
+</script>
+</html>

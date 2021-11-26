@@ -1,14 +1,23 @@
-from bs4 import BeautifulSoup
 import requests
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+import json
+
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 
 
 def weather(city):
-    city = city.replace(" ", "+")
-    res = requests.get(
-        f'https://www.google.com/search?q={city}&oq={city}&aqs=chrome.0.35i39l2j0l4j46j69i60.6128j1j7&sourceid=chrome&ie=UTF-8', headers=headers)
-    soup = BeautifulSoup(res.text, 'html.parser')
-    temp = soup.select('#wob_tm')[0].getText().strip()
-    print(temp+"°C")
-    return temp
+    URL = BASE_URL + "q=" + city + "&appid=" + "8f8694694d0b936470289037ead9a9df"
+    response = requests.get(URL)
+    if response.status_code == 200:
+        data = response.json()
+        main = data['main']
+        tempk = main['temp']
+        tempf = (((tempk-273.15)*9)/5)+32
+        tempc = tempk-273.15
+        print(tempc)
+        return tempf
+    else:
+        print(response.content)
+        return 0
+
+# weather('Ottawa')
+# weather('Waterloo')
