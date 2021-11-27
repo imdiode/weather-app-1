@@ -16,34 +16,50 @@
     </style>
 </head>
 <body>
+    <!-- area to load chartjs chart -->
     <canvas id="linechart" class="chartCanvas"></canvas>
 </body>
 <script defer>
-    var jdata;
-    var labels = [];
-    var datav = [];
+    var jdata;       // stores JSON data from Fetch
+    var labels = []; // stores timestamp labels
+    var datav = [];  // stores tempreture difference values
+
     async function getJSON() {
+        // Clears the array for refresh
         labels = [];
         datav = [];
+
+        // Fetching the data from backend
         var mydata = await fetch('data');
+
+        // Checking response
         if (mydata.status === 200) {
+
+            // Parsing and formatting the data
             let data = await mydata.text();
             jdata = JSON.parse(data);
-            console.log(jdata);
+
+            // Loading the data for refresh
             for(i in jdata)
             {
                 labels.push(i);
                 datav.push(jdata[i]);
             }
+
+            // Updating the chart
             myChart.config.data.datasets[0].data = datav;
             myChart.config.data.labels = labels;
             myChart.update('active');
             
         }
     }
-    getJSON();
-    setInterval(getJSON, 60000);
 
+
+    getJSON();                   // First fetch
+    setInterval(getJSON, 60000); // Refreshing data every 60 seconds
+
+
+    // Initializing ChartJS
     const cdata = {
         labels: labels,
         datasets: [{
@@ -58,6 +74,8 @@
         data: cdata,
         options: { }
     };
+
+    // publishing Chartjs chart on canvas
     const myChart = new Chart(document.getElementById('linechart'), config);
 
 </script>
