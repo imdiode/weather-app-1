@@ -1,5 +1,8 @@
 import requests
 import json
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Open weathermap API BASE URL for HTTP request
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
@@ -7,7 +10,8 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 
 def weather(city):
     # Request construction
-    URL = BASE_URL + "q=" + city + "&appid=" + "8f8694694d0b936470289037ead9a9df"
+    apikey = os.getenv('APIKEY')
+    URL = BASE_URL + "q=" + city + "&appid=" + str(apikey)
     
     # Getting response
     response = requests.get(URL)
