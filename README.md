@@ -23,12 +23,12 @@ A weather app to display temperature difference chart between two cities.
 
 ## Folder Structure
 --Root<br />
- |- temp.py (Gets temperature)<br />
- |- keep_alive.py (Flask server)<br />
- |- templates<br />
-   |- public<br />
-     |- index.html (View)<br />
-     |- data.json (Database)<br />
- |- script.py (Main file that runs everything)<br />
- |- LICENSE<br />
- |_ README.md<br />
+&nbsp; |- temp.py (Gets temperature)<br />
+&nbsp; |- keep_alive.py (Flask server)<br />
+&nbsp; |- templates<br />
+&nbsp; &nbsp;&nbsp;|- public<br />
+&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;|- index.html (View)<br />
+&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;|- data.json (Database)<br />
+&nbsp; |- script.py (Main file that runs everything)<br />
+&nbsp; |- LICENSE<br />
+&nbsp; |_ README.md<br />
