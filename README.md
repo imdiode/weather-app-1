@@ -22,13 +22,13 @@ A weather app to display temperature difference chart between two cities.
 7. Add "APIKEY={yourAPIKEYwithoutcurlybraces}"
 
 ## Folder Structure
---Root
- |- temp.py (Gets temperature)
- |- keep_alive.py (Flask server)
- |- templates
-   |- public
-     |- index.html (View)
-     |- data.json (Database)
- |- script.py (Main file that runs everything)
- |- LICENSE
- |_ README.md
+--Root<br />
+ |- temp.py (Gets temperature)<br />
+ |- keep_alive.py (Flask server)<br />
+ |- templates<br />
+   |- public<br />
+     |- index.html (View)<br />
+     |- data.json (Database)<br />
+ |- script.py (Main file that runs everything)<br />
+ |- LICENSE<br />
+ |_ README.md<br />
