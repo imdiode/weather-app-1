@@ -32,3 +32,6 @@ A weather app to display temperature difference chart between two cities.
 &nbsp; |- script.py (Main file that runs everything)<br />
 &nbsp; |- LICENSE<br />
 &nbsp; |_ README.md<br />
+
+### WARNING
+Don't disclose your API key to anyone it can be a privacy and security threat!
