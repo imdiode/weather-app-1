@@ -8,9 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
     <style>
         .chartCanvas{
-            height: 400px;
-            width: 20%;
-            margin-left: 33%;
+            width: 70% !important;
+            height: 80vh !important;
+            margin-left: 15%;
             margin-top: 10vh;
         }
     </style>
@@ -19,16 +19,30 @@
     <canvas id="linechart" class="chartCanvas"></canvas>
 </body>
 <script defer>
-    const mydata = fetch('data');
-    var labels= [];
-    var datar = [];
-
-    for(var i in mydata){
-        labels.push(i);
-        datar.push(mydata[i]);
+    var jdata;
+    var labels = [];
+    var datav = [];
+    async function getJSON() {
+        labels = [];
+        datav = [];
+        var mydata = await fetch('data');
+        if (mydata.status === 200) {
+            let data = await mydata.text();
+            jdata = JSON.parse(data);
+            console.log(jdata);
+            for(i in jdata)
+            {
+                labels.push(i);
+                datav.push(jdata[i]);
+            }
+            myChart.config.data.datasets[0].data = datav;
+            myChart.config.data.labels = labels;
+            myChart.update('active');
+            
+        }
     }
-
-    console.log(datar);
+    getJSON();
+    setInterval(getJSON, 60000);
 
     const cdata = {
         labels: labels,
@@ -36,13 +50,13 @@
             label: 'Temperature difference',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: datar,
+            data: datav,
         }]
     };
     const config = {
         type: 'line',
         data: cdata,
-        options: {}
+        options: { }
     };
     const myChart = new Chart(document.getElementById('linechart'), config);
 

@@ -15,7 +15,7 @@ while(True):
     with open('./templates/public/data.json', 'r+') as f:
         data = json.load(f)
         print(len(data))
-        if(len(data)>9):
+        if(len(data)>59):
             del data[list(data.keys())[0]]
         data[now.strftime("%d-%m-%Y %H:%M:%S")] = diff
         f.seek(0)

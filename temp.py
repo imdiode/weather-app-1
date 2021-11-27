@@ -13,7 +13,7 @@ def weather(city):
         tempk = main['temp']
         tempf = (((tempk-273.15)*9)/5)+32
         tempc = tempk-273.15
-        print(tempc)
+        print(tempf)
         return tempf
     else:
         print(response.content)
